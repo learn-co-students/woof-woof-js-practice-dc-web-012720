@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLodaed", () => {
-    fetchDogs();
+    
+    fetchDogs;
 });
 
 function fetchDogs() {
     fetch("http://localhost:3000/pups")
     .then(response => response.json())
-    .then(json => processDogs(json))
-    // 
+    .then(json => json.forEach(pup => processDog(pup)))
 }
 
-function processDogs() {
-    let div = document.querySelector("#dog-bar");
-    
+function processDog(pup) {
+    let dogBar = document.querySelector("#dog-bar");
+    let dog = document.createElement('span');
+    dog.innerText = pup.name
+    dogBar.append(dog)
 }
