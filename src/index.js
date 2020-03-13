@@ -1,9 +1,6 @@
-document.addEventListener("DOMContentLodaed", () => {
-    
-    fetchDogs;
-    // let pupSpan = document.querySelectorAll(".pups");
-    // pupSpan.addEventListener("click", showDetails);
-    let isGood = true;
+document.addEventListener("DOMContentLoaded", () => {
+    fetchDogs();
+    // let isGood = true;
 });
 
 function fetchDogs() {
@@ -21,14 +18,28 @@ function processDog(pup) {
     dog.addEventListener("click", () => showDetails(pup));
 }
 
-function showDetails(event) {
+function showDetails(pup) {
     let details = document.querySelector("#dog-info");
     let image = document.createElement("img");
     let name = document.createElement("h2");
-    let btn = document.createElement("button");
-    debugger;
-    image.src = event.image;
-    name = event.name 
-    
+    image.src = pup.image;
+    name = pup.name
 
+    let goodPup = document.createElement("button");
+    if (pup.isGoodDog) {
+        goodPup.innerText = "Good Dog!"
+    } else {
+        goodPup.innerText= "Bad Dog!"
+    }
+    goodPup.addEventListener("click", () => {
+        pup.isGoodDog = !pup.isGoodDog;
+        if (pup.isGoodDog) {
+        goodPup.innerText = "Good Dog!"
+    } else {
+        goodPup.innerText= "Bad Dog!"
+    }
+    })
+
+    details.append(image,name,goodPup)
+    
 }
