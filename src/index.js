@@ -38,8 +38,22 @@ function showDetails(pup) {
     } else {
         goodPup.innerText= "Bad Dog!"
     }
+    fetch(`http://localhost:3000/pups/${pup.id}`, {
+        method: "PATCH", 
+        body: JSON.stringify( {
+            name: pup.name,
+            image: pup.image, 
+            isGoodDog: pup.isGoodDog
+        }), 
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(response => response.json())
+    .then(json => console.log(json))
     })
 
     details.append(image,name,goodPup)
-    
 }
+
+
+
